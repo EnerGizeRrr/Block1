@@ -37,5 +37,8 @@ $fastStart = microtime(true);
 fastFilter($users, $activeId);
 $fastTime = microtime(true) - $fastStart;
 
+$checkResult = (slowFilter($users, $activeId) === fastFilter($users, $activeId)) && (count(slowFilter($users, $activeId)) === count(fastFilter($users, $activeId)));
+ 
+echo "Результат проверки = " . ($checkResult ? 'Данные совпали' : 'Данные не совпали') . "\n";
 echo "Время медленной фильтрации пользователей = " . number_format($slowTime, 6) . " секунд\n";
 echo "Время быстрой фильтрации пользователей = " . number_format($fastTime, 6) . " секунд\n";
